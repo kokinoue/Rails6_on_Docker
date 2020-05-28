@@ -6,10 +6,13 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && apt-get update -qq \
     && apt-get install -y nodejs yarn \
     && mkdir /Rails6_on_Docker
+
 WORKDIR /Rails6_on_Docker
+
 COPY Gemfile /Rails6_on_Docker/Gemfile
 COPY Gemfile.lock /Rails6_on_Docker/Gemfile.lock
 RUN bundle install
+
 COPY . /Rails6_on_Docker
 
 COPY entrypoint.sh /usr/bin/
